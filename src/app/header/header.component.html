@@ -1,0 +1,13 @@
+
+<mat-toolbar>
+    <span (click)="home()" style="cursor:pointer">JJDAO</span>
+    <span class="spacer"></span>
+    <span *ngIf="isAuthenticated" class="user"><mat-icon>person</mat-icon>&nbsp;{{user}}</span>
+    <span class="spacer"></span>
+    <span *ngIf="isAuthenticated" class="balance"><mat-icon>token</mat-icon>&nbsp;Balance: <code>&nbsp;{{userBalance}} JJT</code></span>
+    <span class="spacer"></span>
+    <span *ngIf="isAuthenticated" class="allowance"><mat-icon>account_balance_wallet</mat-icon>&nbsp;Allowance: <code>&nbsp;{{contractAllowance}} JJT</code></span>
+    <span class="spacer"></span>
+    <button mat-icon-button *ngIf="isAuthenticated" (click)="logout()"><mat-icon>logout</mat-icon></button>
+    <button mat-icon-button *ngIf="!isAuthenticated" (click)="login()"><mat-icon>login</mat-icon></button>
+</mat-toolbar>

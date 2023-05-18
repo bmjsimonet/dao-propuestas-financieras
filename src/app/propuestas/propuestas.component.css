@@ -1,0 +1,328 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.blurred {
+    opacity: 0.3;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.button-container, .status-container, .date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-container {
+    color: rgb(218, 218, 218);
+}
+
+.date {
+    font-size: large;
+    display: inline-flex;
+    align-items: center;
+}
+
+.status {
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.status.enabled {
+    color: rgb(109, 235, 151);
+}
+
+.status.enabled::after {
+    font-family: "Material Symbols Outlined";
+    font-size: 24px;
+    content: '\e9f6';
+    vertical-align: middle;
+    margin-left: 10px;
+    
+}
+
+.status.disabled {
+    color: rgb(218, 140, 140);
+}
+
+.status.disabled::after {
+    font-family: "Material Symbols Outlined";
+    font-size: 24px;
+    content: '\e9f5';
+    vertical-align: middle;
+    margin-left: 10px;
+    
+}
+
+.proposals_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.legend {
+    display: flex;
+    align-items: flex-end;
+}
+
+.legend span::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+    background-color: rgb(132, 255, 132);
+}
+
+.legend span:not(:last-of-type) {
+    margin-right: 15px;
+}
+
+.legend .approved::before {
+    background-color: rgb(115, 115, 255);
+}
+
+.legend .retired::before {
+    background-color: rgb(180, 66, 66);
+}
+
+.no_propuestas {
+    margin-block-start: 1em;
+    min-width: 800px;
+    min-height: 50px;
+    padding: 10px;
+    background-color: rgb(30, 30, 30);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.propuestas {
+    padding-left: 0px;
+}
+
+.propuesta {
+    position: relative;
+    list-style: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(30, 30, 30);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    border-left: 3px solid rgb(132, 255, 132);
+    min-width: 800px;
+}
+
+.propuesta.aprobada {
+    border-left: 3px solid rgb(115, 115, 255);
+}
+
+.propuesta.retirada {
+    border-left: 3px solid rgb(180, 66, 66);
+}
+
+.propuesta span {
+    color: #a5a5a5;
+}
+
+.propuesta .title {
+    display:inline-block;
+    font-size: medium;
+    margin-bottom: 10px;
+    color: #eeeeee;
+}
+
+.propuesta .proposer {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+}
+
+.propuesta .proposer.current-user {
+    color: rgb(184, 162, 39);
+}
+
+.propuesta .proposer::before {
+    font-family: "Material Icons";
+    content: '\e7fd';
+    vertical-align: middle;
+    margin-right: 2px;
+    color: rgb(255, 141, 141);
+}
+
+.propuesta .contract {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+}
+
+.propuesta .contract::before {
+    font-family: "Material Symbols Outlined";
+    content: '\e850';
+    vertical-align: middle;
+    margin-right: 2px;
+    color: rgb(199, 199, 199);
+}
+
+.propuesta .voters {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+}
+
+.propuesta .voters::before {
+    font-family: "Material Symbols Outlined";
+    content: '\eaa6';
+    vertical-align: middle;
+    margin-right: 2px;
+    color: rgb(243, 177, 55);
+}
+
+.propuesta .votingProcess {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    font-size: 13px;
+    color: rgb(147, 149, 255);
+}
+
+.propuesta .votingProcess::before {
+    font-family: "Material Icons";
+    content: '\e177';
+    vertical-align: middle;
+    margin-right: 2px; 
+}
+
+.propuesta .requiredTokens {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+}
+
+.propuesta .requiredTokens::before {
+    font-family: "Material Icons";
+    content: '\ebc5';
+    vertical-align: middle;
+    margin-right: 2px;
+    color: rgb(140, 90, 182);
+}
+
+.propuesta .tokens {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    font-size: 13px;
+    font-family: ui-rounded;
+    color: aquamarine;
+}
+
+.propuesta .tokens::before {
+    font-family: "Material Icons";
+    content: '\ea25';
+    vertical-align: middle;
+    margin-right: 2px; 
+}
+
+.propuesta .votes {
+    position: absolute;
+    top: 3px;
+    right: 43px;
+    font-size: 13px;
+    font-family: ui-rounded;
+    color: burlywood;
+}
+
+.propuesta .votes::before {
+    font-family: "Material Icons";
+    content: '\e175';
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+.proposal_button {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    border-radius: 50%;
+}
+
+.proposal_button span {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+    background-color: #c2185b;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proposal_button:enabled span::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 0px;
+    left: 0px;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+}
+
+.proposal_button:enabled:active span::before {
+    background-color: #ffffff;
+    opacity: 0.2;
+    transition: opacity 200ms cubic-bezier(0.35, 0, 0.25, 1), background-color 200ms cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+.proposal_button:disabled span {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.retire_button {
+    right: 72px;
+}
+
+.retire_button span::after {
+    font-family: "Material Symbols Outlined";
+    content: '\e166';
+    vertical-align: middle;
+    color: whitesmoke;
+}
+
+.vote_button {
+    right: 16px;
+}
+
+.vote_button span::after {
+    font-family: "Material Icons";
+    content: '\e175';
+    vertical-align: middle;
+    color: whitesmoke;
+}
+
+h1.dialog-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+

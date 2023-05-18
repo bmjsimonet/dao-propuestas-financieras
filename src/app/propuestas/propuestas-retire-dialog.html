@@ -1,0 +1,26 @@
+
+<div class="parent retire-dialog">
+    <div class="spinner-overlay" *ngIf="retireThinking">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+
+    <div [class.blurred]="retireThinking">
+
+        <h1 mat-dialog-title class="dialog-title"><mat-icon style="font-family: 'Material Symbols Outlined';">undo</mat-icon>&nbsp;Retirar propuesta</h1>
+        <div mat-dialog-content>
+            <p>¿Seguro que deseas retirar esta propuesta? Una vez retirada ya no se podrá votar.</p>
+            <p *ngIf="data.tokens > 0">Se devolverán los <code class="tokens">{{data.tokens}}</code> tokens depositados a los votantes.</p>
+            <div class="proposal-data-container">
+                <div class="proposal-data">
+                    <div class="proposal-field"><span class="proposal-field-label">Propuesta: &nbsp;</span><span class="proposal-field-name">{{data.name}}</span></div>
+                    <div class="proposal-field"><span class="proposal-field-label">Votos depositados: </span><span class="proposal-field-votes"><code>{{data.votes}}</code></span></div>
+                    <div class="proposal-field"><span class="proposal-field-label">Tokens depositados: </span><span class="proposal-field-tokens"><code>{{data.tokens}}</code></span></div>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onCancel()">Cancelar</button>
+            <button mat-button (click)="onOK()" cdkFocusInitial>OK</button>
+        </div>
+    </div>
+</div>

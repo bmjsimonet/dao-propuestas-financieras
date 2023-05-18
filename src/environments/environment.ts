@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  web3Provider: 'http://localhost:8545',
+  jjdaoAddress: '0x3BE6F7c6936211a3f1C874167d7C7b92bcB60B5e',
+  jjtokenAddress: '0x8eC3A5002edeEc97659A712065B5F2f361B449E4'
 };
 
 /*

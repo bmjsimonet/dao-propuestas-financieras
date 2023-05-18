@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Proceso de votación</h1>
+<div mat-dialog-content>
+  <p>Introduce los datos del nuevo proceso de votación:</p>
+  <mat-form-field appearance="fill" style="width:30vw">
+    <mat-label>Fecha y hora de inicio</mat-label>
+    <input matInput [(ngModel)]="data.startDate">
+  </mat-form-field>
+  &nbsp;&nbsp;&nbsp;<mat-icon>date_range</mat-icon>&nbsp;&nbsp;&nbsp;
+  <mat-form-field appearance="fill" style="width:30vw">
+    <mat-label>Fecha y hora de fin</mat-label>
+    <input matInput [(ngModel)]="data.endDate">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="{startDate: data.startDate, endDate: data.endDate}" cdkFocusInitial>OK</button>
+</div>

@@ -1,0 +1,84 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Proceso de votación</mat-card-title>
+    <mat-icon mat-card-avatar>where_to_vote</mat-icon>
+  </mat-card-header>
+
+  <div *ngIf="isAuthenticated">
+    <div class="parent">
+      <div class="spinner-overlay" *ngIf="voteThinking"><mat-spinner [diameter]="50"></mat-spinner></div>
+      <div [class.blurred]="voteThinking">
+        <span *ngIf="!isParticipant">Información visible solo para participantes, haz click <a [routerLink]="['/welcome']">aquí</a> para ir a la página de bienvenida y poder participar.</span>
+        <div class="date-container" *ngIf="isParticipant">
+          <span class="date">{{(votingProcess$ | async)?.startDate | date:'yyyy/MM/dd HH:mm'}}&nbsp;&nbsp;&nbsp;<mat-icon>date_range</mat-icon>&nbsp;&nbsp;&nbsp;{{(votingProcess$ | async)?.endDate | date:'yyyy/MM/dd HH:mm'}}</span>
+        </div>
+        <br/>
+        <div class="status-container">
+          <span class="status enabled" *ngIf="(votingProcess$ | async)?.isEnabled">Activo</span>
+          <span class="status disabled" *ngIf="!((votingProcess$ | async)?.isEnabled)">Inactivo</span>
+        </div>
+        <br/>
+        <div class="button-container" *ngIf="hasAdminRights">
+          <button mat-flat-button color="primary" [disabled]="(votingProcess$ | async)?.isEnabled" (click)="openVotingProcessDialog()"><mat-icon>play_circle</mat-icon>&nbsp;&nbsp;Iniciar</button>
+          &nbsp;&nbsp;&nbsp;
+          <button mat-flat-button color="primary" [disabled]="!(votingProcess$ | async)?.isEnabled" (click)="finalizarVotacion()"><mat-icon>stop_circle</mat-icon>&nbsp;&nbsp;Finalizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isAuthenticated">
+    <span>No estás loguead@, haz click <a href="/login">aquí</a> para loguearte.</span>
+  </div>
+</mat-card>
+<br/>
+<br/>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Propuestas</mat-card-title>
+      <mat-icon mat-card-avatar>list</mat-icon>
+    </mat-card-header>
+
+    <div *ngIf="isAuthenticated">
+      <div class="parent">
+        <span *ngIf="!isParticipant">Información visible solo para participantes, haz click <a [routerLink]="['/welcome']">aquí</a> para ir a la página de bienvenida y poder participar.</span>
+
+        <form [formGroup]="proposalsForm">
+          <mat-button-toggle-group formControlName="proposalsFilter">
+            <mat-button-toggle value="{{ProposalsFilter.ALL}}" (click)="aplicarFiltro()" checked><mat-icon>list_alt</mat-icon>&nbsp;&nbsp;&nbsp;Todas</mat-button-toggle>
+            <mat-button-toggle value="{{ProposalsFilter.CURRENT}}" (click)="aplicarFiltro()"><span class="material-symbols-outlined">overview</span>&nbsp;&nbsp;&nbsp;Activas</mat-button-toggle>
+            <mat-button-toggle value="{{ProposalsFilter.MY}}" (click)="aplicarFiltro()"><span class="material-symbols-outlined">patient_list</span>&nbsp;&nbsp;&nbsp;Mis</mat-button-toggle>
+          </mat-button-toggle-group>
+        </form>
+
+        <div class="spinner-overlay" *ngIf="proposalsThinking"><mat-spinner [diameter]="50"></mat-spinner></div>
+        <div [class.blurred]="proposalsThinking">
+          <div class="proposals_buttons"><span class="legend"><span class="pending">Pendiente</span><span class="approved">Aprobada</span><span class="retired">Retirada</span></span><button mat-flat-button color="primary" [disabled]="!(votingProcess$ | async)?.isEnabled" (click)="openProposalDialog()"><mat-icon style="font-family: 'Material Symbols Outlined';">new_window</mat-icon>&nbsp;&nbsp;Crear propuesta</button></div>
+          <span class="no_propuestas" *ngIf="proposalsView.length === 0">No hay ninguna propuesta.</span>
+
+          <ul *ngIf="proposalsView.length !== 0" class="propuestas">
+            <li *ngFor="let proposal of proposalsView" class="propuesta" [class.aprobada]="proposal.status == Status.APROBADA" [class.retirada]="proposal.status == Status.RETIRADA">
+              <span class="title">{{proposal.description}}</span><br/>
+              <span class="proposer" [class.current-user]="proposal.proposer == user"><code>{{proposal.proposer}}</code></span><br/>
+              <span class="requiredTokens"><code>{{proposal.requiredTokenAmount}}</code></span><br/>
+              <span class="contract"><code>{{proposal.managementContract}}</code></span><br/>
+              <span class="voters"><code>{{proposal.voters.length}}</code></span><br/>
+              <span class="tokens"><code>{{proposal.tokenCount}}</code></span>
+              <span class="votes"><code>{{proposal.voteCount}}</code></span>
+              <!--<span class="votingProcess"><code>{{proposal.votingProcessId}} - {{(votingProcess$ | async)?.id}}</code></span>-->
+              <button color="primary" aria-label="Vote" class="proposal_button vote_button" [disabled]="proposal.votingProcessId !== (votingProcess$ | async)?.id || proposal.status != Status.PENDIENTE" (click)="openVoteDialog(proposal.id, proposal.description, user, proposal.voteCount, proposal.requiredTokenAmount, proposal.tokenCount)">
+                <span></span>
+              </button>
+              <button color="primary" aria-label="Retire" class="proposal_button retire_button" [disabled]="(proposal.proposer !== user) || (proposal.status != Status.PENDIENTE)" (click)="openRetireDialog(proposal.id, proposal.description, proposal.tokenCount, proposal.voteCount)">
+                <span></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isAuthenticated">
+        <span>No estás loguead@, haz click <a href="/login">aquí</a> para loguearte.</span>
+    </div>
+</mat-card>

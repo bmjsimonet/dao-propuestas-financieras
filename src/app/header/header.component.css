@@ -1,0 +1,16 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.user, .balance, .allowance {
+    display: inline-flex;
+    align-items: center;
+}
+
+.balance {
+    color: #9ffa9f;
+}
+
+.allowance {
+    color: #b8b8eb;
+}

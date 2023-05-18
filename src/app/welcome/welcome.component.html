@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Bienvenid@ a JJDAO!</mat-card-title>
+      <mat-icon mat-card-avatar>home</mat-icon>
+    </mat-card-header>
+
+    <div *ngIf="!isAuthenticated">
+        <span>No estás loguead@, haz click <a href="/login">aquí</a> para loguearte.</span>
+        <br/><br/>
+    </div>
+
+    <div class="parent">
+        <div class="spinner-overlay" *ngIf="thinking"><mat-spinner [diameter]="50"></mat-spinner></div>
+        <div [class.blurred]="thinking">
+            <p>Bienvenid@ a nuestra DAO de propuestas financieras.</p>
+            <p>Aquí podrás participar en la toma de decisiones de la organización y decidir qué propuestas se llevan a cabo y cuáles no.</p>
+            <p>Te animamos a que tú también participes. Al participar podrás:</p>
+            <mat-list>
+                <mat-list-item>
+                    <mat-icon matListItemIcon color="primary">task_alt</mat-icon>
+                    <span>&nbsp;Participar en procesos de votación</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon color="primary" matListItemIcon>task_alt</mat-icon>
+                    <span>&nbsp;Ver todas las propuestas en curso</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon color="primary" matListItemIcon>task_alt</mat-icon>
+                    <span>&nbsp;Votar una propuesta</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon color="primary" matListItemIcon>task_alt</mat-icon>
+                    <span>&nbsp;Crear tus propias propuestas</span>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon color="primary" matListItemIcon>task_alt</mat-icon>
+                    <span>&nbsp;Retirar las propuestas que hayas creado</span>
+                </mat-list-item>
+            </mat-list><br/>
+            <p>Si ya te has decidido, participa en la DAO pulsando el siguiente botón:</p>
+            <button mat-flat-button color="primary" (click)="participate()">
+                <mat-icon>tips_and_updates</mat-icon>
+                <span>&nbsp;Participar</span>
+            </button>
+        </div>
+    </div>
+</mat-card>

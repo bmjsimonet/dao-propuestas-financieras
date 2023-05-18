@@ -1,0 +1,48 @@
+
+<div class="parent">
+    <div class="spinner-overlay" *ngIf="proposalThinking">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+
+    <div [class.blurred]="proposalThinking">
+
+<h1 mat-dialog-title class="dialog-title"><mat-icon style="font-family: 'Material Symbols Outlined';">new_window</mat-icon>&nbsp;Nueva propuesta</h1>
+<div mat-dialog-content>
+    
+    <form [formGroup]="proposalForm" (keyup.enter)="validate()">
+        <p>Introduce los datos de la nueva propuesta:</p>
+        <div>
+        <mat-form-field style="width:32vw" appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <input matInput type="text" id="description" #description formControlName="description" placeholder="Descripción de la propuesta" maxlength="32" autofocus>
+            <mat-hint align="end">{{description.value.length}}/32</mat-hint>
+            <mat-icon matSuffix>edit_note</mat-icon>
+            <mat-error *ngIf="myError('description', 'required')">Descripción requerida</mat-error>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field style="width:32vw" appearance="outline">
+            <mat-label>Tokens requeridos</mat-label>
+            <input matInput id="requiredTokenAmount" type="number" formControlName="requiredTokenAmount" placeholder="0">
+            <mat-icon matSuffix>currency_bitcoin</mat-icon>
+            <mat-error *ngIf="myError('requiredTokenAmount', 'required')">Tokens requeridos</mat-error>
+            <mat-error *ngIf="!myError('requiredTokenAmount', 'required') && myError('requiredTokenAmount', 'invalidNumber')">Debe ser mayor a 0</mat-error>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field style="width:32vw" appearance="outline">
+            <mat-label>Contrato de gestión</mat-label>
+            <input matInput placeholder="0x0000000000000000000000000000000000000000" id="managementContract" type="text" formControlName="managementContract">
+            <mat-icon matSuffix>account_balance_wallet</mat-icon>
+            <mat-error *ngIf="myError('managementContract', 'required')">Dirección requerida</mat-error>
+            <mat-error *ngIf="!myError('managementContract', 'required') && myError('managementContract', 'invalidAddress')">Dirección de contrato errónea</mat-error>
+        </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button [disabled]="!proposalForm.valid" (click)="onOK()">OK</button>
+</div>
+</div>
+</div>

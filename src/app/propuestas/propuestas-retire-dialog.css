@@ -1,0 +1,83 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.blurred {
+    opacity: 0.3;
+}
+
+.retire-dialog .tokens {
+    color: #9ffa9f;
+}
+
+.retire-dialog .tokens::after {
+    font-family: "Material Symbols Outlined";
+    content: '\ea25';
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+.retire-dialog .proposal-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.retire-dialog .proposal-data {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.retire-dialog .proposal-field {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.retire-dialog .proposal-field:last-of-type {
+    margin-bottom: 0px;
+}
+
+.retire-dialog .proposal-field-label {
+    color: #c1a9a9;
+}
+
+.retire-dialog .proposal-field-votes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: burlywood;
+}
+
+.retire-dialog .proposal-field-votes::after {
+    font-family: "Material Symbols Outlined";
+    font-size: 14px;
+    content: '\e175';
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+.retire-dialog .proposal-field-tokens {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #9ffa9f;
+}
+
+.retire-dialog .proposal-field-tokens::after {
+    font-family: "Material Symbols Outlined";
+    font-size: 14px;
+    content: '\ea25';
+    vertical-align: middle;
+    margin-left: 2px;
+}

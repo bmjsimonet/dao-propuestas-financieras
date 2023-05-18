@@ -1,0 +1,37 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-icon mat-card-avatar>lock_person</mat-icon>
+    </mat-card-header>
+    <div class="parent">
+      <div class="spinner-overlay" *ngIf="thinking">
+        <mat-spinner [diameter]="50"></mat-spinner>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()" [class.blurred]="thinking">
+
+        <div>
+          <mat-form-field appearance="outline" style="width:50vw">
+            <mat-label>Dirección</mat-label>
+            <input matInput placeholder="0x0000000000000000000000000000000000000000" id="user" type="text" formControlName="user" autofocus >
+            <mat-icon matSuffix>wallet</mat-icon>
+            <mat-error *ngIf="myError('user', 'required')">Dirección requerida</mat-error>
+            <mat-error *ngIf="!myError('user', 'required') && myError('user', 'invalidAddress')">Dirección errónea</mat-error>
+          </mat-form-field>
+        </div>
+      
+        <div>
+          <mat-form-field appearance="outline" style="width:50vw">
+            <mat-label>Contraseña</mat-label>
+            <input matInput id="pass" type="password" formControlName="pass">
+            <mat-icon matSuffix>key</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="parent">
+          <button mat-flat-button color="accent" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </div>
+      
+      </form>
+    </div>
+  </mat-card>

@@ -1,0 +1,8 @@
+.snackbar-text::before {
+    content: '\e86c';
+    font-family: "Material Symbols Outlined";
+    vertical-align: middle;
+    color: #50b950;
+    font-size: 18px;
+    margin-right: 5px;
+}

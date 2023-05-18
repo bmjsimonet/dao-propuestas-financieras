@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Información de debug Web3</mat-card-title>
+    <mat-icon mat-card-avatar>bug_report</mat-icon>
+  </mat-card-header>
+  <div>
+    <mat-card-subtitle>Información de configuración</mat-card-subtitle>
+    <span>Proveedor HTTP: <code>{{this.web3ProviderName}}</code></span><br/>
+    <span>Dirección del contrato: <code>{{this.jjdaoAddress}}</code></span>
+  </div><br/><br/>
+  <div>
+    <mat-card-subtitle>Información de la red</mat-card-subtitle>
+    <span>Chain Id: <code>{{this.chainId}}</code></span><br/>
+    <span>Información del nodo: <code>{{this.nodeInfo}}</code></span>
+  </div>
+</mat-card>

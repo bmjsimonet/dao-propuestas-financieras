@@ -1,0 +1,56 @@
+
+<div class="parent">
+    <div class="spinner-overlay" *ngIf="voteThinking">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+
+    <div [class.blurred]="voteThinking">
+
+        <h1 mat-dialog-title class="dialog-title"><mat-icon style="font-family: 'Material Symbols Outlined';">how_to_vote</mat-icon>&nbsp;Votar propuesta</h1>
+        <div mat-dialog-content>
+            <div class="tables-container">
+                <div class="proposal-data-container">
+                    <div class="proposal-data">
+                        <div class="data"><span class="votes-label">Votos totales: </span><span class="votes-quantity"><code>{{data.votes}}</code></span></div>
+                        <div class="data"><span class="tokens-label">Tokens: </span><span class="tokens-quantity"><code>{{data.currentTokens}}/{{data.tokens}}</code></span></div>
+                    </div>
+                </div>
+                <div class="balances-container">
+                    <div class="balances">
+                        <div class="balance"><span class="balance-label">Balance: </span><span class="balance-quantity"><code>{{userBalance}}</code></span></div>
+                        <div class="balance"><span class="allowance-label">Allowance: </span><span class="allowance-quantity"><code>{{contractAllowance}}</code></span></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <form [formGroup]="voteForm" class="voteForm" (keyup.enter)="validate()">
+                    <h2>{{data.name}}</h2>
+                    <div>
+                        <div class="balance" style="margin-bottom: 3px;"><span class="votes-label">Tus votos: </span><span class="votes-quantity"><code>{{(votesByParticipantByProposal$ | async)?.votes}}</code></span></div>
+                        <div>
+                            <mat-form-field style="width:10vw" appearance="outline">
+                                <mat-label>Votos</mat-label>
+                                <input matInput type="number" id="votes" #votes formControlName="votes" (keyup)="votesChange()" (change)="votesChange()" placeholder="0" autofocus>
+                                <mat-icon matSuffix>how_to_vote</mat-icon>
+                                <mat-error *ngIf="myError('votes', 'required')">Votos requeridos</mat-error>
+                                <mat-error *ngIf="!myError('votes', 'required') && myError('votes', 'invalidNumber')">Debe ser mayor a 0</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field style="width:10vw" appearance="outline">
+                                <mat-label>Tokens</mat-label>
+                                <input matInput id="tokens" type="number" formControlName="tokens" >
+                                <mat-icon matSuffix>token</mat-icon>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onCancel()">Cancelar</button>
+            <button mat-button [disabled]="!voteForm.valid" (click)="onOK()">OK</button>
+        </div>
+    </div>
+</div>
